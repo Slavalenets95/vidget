@@ -1,0 +1,277 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+button {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.footer {
+    margin-top: auto;
+}
+
+.fixed-menu {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    display: flex;
+    flex-direction: column-reverse;
+}
+.fixed-menu__item {
+    position: relative;
+    margin-top: 14px;
+}
+.fixed-menu__list {
+    display: flex;
+    flex-direction: column-reverse;
+    position: absolute;
+    bottom: 60px;
+    visibility: visible;
+    transition: all .2s linear;
+    opacity: 1;
+}
+
+.fixed-menu__list[data-opened="false"]{
+    visibility: hidden;
+    bottom: 0;
+    opacity: 0;
+}
+
+.fixed-menu__list-item:not(:last-child) {
+    margin-top: 5px;
+}
+/*******PRIMARY BTN**************/
+
+.primary-item {
+    position: relative;
+    z-index: 99;
+}
+.primary svg {
+    transition: transform .3s linear;
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.close-svg {
+    transform: rotate(0);
+}
+.open-svg {
+    transform: rotate(360deg);
+}
+.primary-item[data-active="false"] .close-svg {
+    visibility: hidden;
+}
+.primary-item[data-active="false"] .open-svg {
+    transform: rotate(0);
+}
+.primary-item[data-active="true"] .open-svg {
+    visibility: hidden;
+}
+.primary-item[data-active="true"] .close-svg {
+    transform: rotate(360deg);
+}
+
+/**********END PRIMARY BTN***************/
+
+
+.fixed-menu__list-link, .fixed-menu__btn {
+    cursor: pointer;
+    box-sizing: border-box;
+    padding: 5px;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    box-shadow: rgb(0 0 0 / 40%) 2px 2px 6px;
+}
+
+.primary {
+    background: rgb(229, 216, 23);
+    position: relative;
+}
+
+.whatsapp {
+    background: rgb(77, 194, 71);
+}
+
+.viber {
+    background: rgb(123, 81, 157);
+}
+
+.vk {
+    background: rgb(99, 131, 168);
+}
+
+.telegram {
+    background: rgb(0, 136, 204);
+}
+
+.instagram {
+    background: rgb(247, 119, 55);
+}
+.mail {
+    background: rgb(132, 132, 132);
+}
+
+.phone {
+    background: rgb(236, 89, 35);
+}
+.fixed-menu__list-link:hover {
+    box-shadow: rgb(0 0 0 / 70%) 2px 2px 11px;
+}
+
+.fixed-menu__list-link::before {
+    content: '';
+    transition: right .3s ease;
+    padding: 4px 9px 6px 9px;
+    color: rgb(51, 51, 51);
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 20%) 2px 2px 5px;
+    border: 1px solid rgb(226, 226, 226);
+    font-size: 13px;
+    border-radius: 4px;
+    position: absolute;
+    right: 0px;
+    opacity: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: -1;
+}
+
+.fixed-menu__list-link:hover.fixed-menu__list-link::before {
+    opacity: 1;
+    display: inline-block;
+    right: 60px;
+}
+
+.whatsapp::before {
+    content: 'Whatsapp';
+}
+
+.viber::before {
+    content: 'Viber';
+}
+
+.vk::before {
+    content: 'Vkontakte';
+}
+
+.telegram::before {
+    content: 'Telegram';
+}
+
+.instagram::before {
+    content: 'Instagram';
+}
+.mail::before {
+    content: 'Mail';
+}
+.phone::before {
+    content: 'Call'
+}
+/***********************************/
+
+.popup-list {
+    position: absolute;
+    right: 0px;
+    bottom: 80px;
+    visibility: visible;
+    transition: bottom .3s linear;
+}
+.popup-list[data-opened="false"] {
+    visibility: hidden;
+    bottom: 0;
+}
+.popup-list__item[data-active='false'] {
+    visibility: hidden;
+}
+
+.popup-list__item {
+    display: flex;
+    flex-direction: column;
+    min-height: 150px;
+    width: 300px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: rgb(0 0 0 / 17%) 7px 7px 15px 8px;
+    transition: all .3s linear;
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+}
+.popup-list__item-header {
+    height: 50px;
+    padding: 0 10px 0 10px;
+    color: white;
+    display: flex;
+    align-items: center;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    justify-content: space-between;
+}
+.popup-list__item svg {
+    max-width: 28px;
+    max-height: 28px;
+}
+
+.viber-popup__header {
+    background: rgb(123, 81, 157);
+}
+
+.tel-popup__header {
+    background: rgb(236, 89, 35);
+}
+
+.popup-list__item-logo {
+    display: flex;
+    align-items: center;
+}
+
+.popup-list__body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 20px;
+}
+
+.popup-list__img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.popup-list__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgb(17, 17, 17);
+    font-weight: bold;
+}
+.popup-list__link:hover {
+    color:#999;;
+}
+.popup-list__link span {
+    font-size: 12px;
+    display: inline-block;
+    margin-top: 5px;
+    border-bottom: 1px solid;
+}
