@@ -16,12 +16,12 @@ const closeMenuList = () => {
 
     if (popupList.dataset.opened === 'false' && menuList.dataset.opened === 'false') {
         primaryBtn.addEventListener('mouseenter', primaryBtnMouseHandler)
-        primaryBtn.addEventListener('click', primaryBtnClickHandler)
+        primaryBtn.addEventListener('click', primaryBtnMouseHandler)
         menuList.removeEventListener('click', menuListClickHandler)
     }
 
     if (popupList.dataset.opened === 'true') {
-        primaryBtn.addEventListener('click', primaryBtnClickHandler)
+        primaryBtn.addEventListener('click', primaryBtnMouseHandler)
         primaryBtn.removeEventListener('mouseenter', primaryBtnMouseHandler)
         menuList.removeEventListener('click', menuListClickHandler)
     }
@@ -38,19 +38,18 @@ const openMenuList = () => {
 const openPopupList = (activeEl) => {
     popupList.dataset.opened = 'true'
     activeEl.dataset.active = 'true'
-
+ 
     popupList.addEventListener('click', closePopupHandler)
 }
 
 const closePopupList = (activeEl) => {
     popupList.dataset.opened = 'false'
     activeEl.dataset.active = 'false'
-
     popupList.removeEventListener('click', closePopupHandler)
 }
 
 const primaryBtnMouseHandler = () => {
-    if (popupList.dataset.opened === 'false') {
+    if (popupList.dataset.opened === 'false' && menuList.dataset.opened === 'false') {
         openMenuList()
     }
 }
@@ -60,11 +59,13 @@ const primaryBtnClickHandler = () => {
         openMenuList()
         closePopupList(activePopup)
         return
-    } else if (menuList.dataset.opened === 'false') {
-        openMenuList()
-    } else {
+    }
+    else if (menuList.dataset.opened === 'true'){
         closeMenuList()
     }
+    else {
+        openMenuList()
+    } 
 }
 
 
@@ -83,9 +84,19 @@ const closePopupHandler = (e) => {
     if (e.target.closest('.popup-list__close-btn')) {
         const item = e.target.closest('.popup-list__item')
         closePopupList(item)
-        closeMenuList()
+        primaryBtn.removeEventListener('click', primaryBtnClickHandler)
+        if(window.screen.availWidth <= 768) {
+            primaryBtn.addEventListener('click', primaryBtnMouseHandler)
+        } else {
+            primaryBtn.addEventListener('mouseenter', primaryBtnMouseHandler)
+        }
     }
 }
 
+if(window.screen.availWidth <= 768) {
+    primaryBtn.addEventListener('click', primaryBtnMouseHandler)
+} else {
+    primaryBtn.addEventListener('mouseenter', primaryBtnMouseHandler)
+}
 
-primaryBtn.addEventListener('mouseenter', primaryBtnMouseHandler)
+
